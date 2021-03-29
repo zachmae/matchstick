@@ -1,0 +1,21 @@
+name: matchstick
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test_server:
+    name: test_matchstick
+    container: epitechcontent/epitest-docker
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: compile
+      run: make
+    - name: test_bash
+      run: ./tests/test_matchstick.sh
